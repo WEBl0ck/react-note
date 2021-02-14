@@ -1,0 +1,83 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "title": "test title",
+      "body": "test body text"
+    },
+    {
+      "title": "ss",
+      "body": "sss",
+      "id": 16
+    },
+    {
+      "title": "dwadwds",
+      "body": "wdasdwasdwasdw",
+      "id": 17
+    },
+    {
+      "title": "Testing",
+      "body": "YEP",
+      "id": 18
+    },
+    {
+      "title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum typesetting industry. Lorem Ipsum",
+      "body": "typesetting industry. Lorem Ipsumtypesetting industry. Lorem Ipsumtypesetting industry. Lorem Ipsumtypesetting industry. Lorem Ipsum",
+      "id": 20
+    },
+    {
+      "title": "TaskList",
+      "body": "1) Finish Search Line Logic\n2) You can change notes background color\n3) White theme \n4) Change design, make it better\n5) Create \"unsaved changes\" notification\n6) Create Download button\n7) Change font size and save it to db\n8) Change editor theme \n9) Numeric colons\n10) Links \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n ",
+      "colorId": 3,
+      "id": 21
+    },
+    {
+      "title": "Testing",
+      "body": "SSS",
+      "colorId": 3,
+      "id": 22
+    }
+  ],
+  "colors": [
+    {
+      "id": 1,
+      "hex": "#C9D1D3",
+      "name": "grey"
+    },
+    {
+      "id": 2,
+      "hex": "#42B883",
+      "name": "green"
+    },
+    {
+      "id": 3,
+      "hex": "#64C4ED",
+      "name": "blue"
+    },
+    {
+      "id": 4,
+      "hex": "#FFBBCC",
+      "name": "pink"
+    },
+    {
+      "id": 5,
+      "hex": "#B6E6BD",
+      "name": "lime"
+    },
+    {
+      "id": 6,
+      "hex": "#C355F5",
+      "name": "purple"
+    },
+    {
+      "id": 7,
+      "hex": "#110133",
+      "name": "black"
+    },
+    {
+      "id": 8,
+      "hex": "#FF6464",
+      "name": "red"
+    }
+  ]
+}

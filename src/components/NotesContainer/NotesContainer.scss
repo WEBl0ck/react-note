@@ -1,0 +1,72 @@
+.note-item {
+  background-color: gold;
+  min-width: 14rem !important;
+  height: 14rem;
+  margin: 1rem;
+  padding: 0;
+  &:hover {
+    .note-item__open-button,
+    .note-item__delete-button {
+      cursor: pointer;
+      display: block;
+    }
+  }
+  &__title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    font-size: 2rem;
+    font-weight: 700;
+    width: 100%;
+    padding: 0rem 1rem;
+    border-bottom: 1px solid;
+  }
+  &__body {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 5;
+    font-size: 1.4rem;
+    padding: 0rem 1rem;
+  }
+  &__open-button {
+    width: 5rem;
+    border: none;
+    height: 2rem;
+    background-color: #28a745;
+    color: white;
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    display: none;
+    opacity: 0.9;
+  }
+  &__delete-button {
+    width: 5rem;
+    border: none;
+    height: 2rem;
+    background-color: #dc3545;
+    color: white;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    display: none;
+    opacity: 0.9;
+  }
+}
+
+.note-search-field {
+  height: 4.6rem;
+  border: none;
+  border-bottom: 1px solid #000;
+  padding: 18px 10px;
+  width: 100%;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: #333333;
+}
