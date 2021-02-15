@@ -46,3 +46,38 @@ textarea {
   align-items: center;
   flex-direction: column;
 }
+
+.edit-note-button-field {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  width: 20rem;
+}
+
+.save-note-button {
+  width: 9rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  padding: 10px 20px;
+  opacity: 0.6;
+  background-color: #00b33c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.cancel-note-button {
+  width: 9rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  padding: 10px 20px;
+  opacity: 0.6;
+  background-color: #dc3545;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}

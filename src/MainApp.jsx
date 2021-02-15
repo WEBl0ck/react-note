@@ -23,6 +23,8 @@ function MainApp() {
   const [colors, setColors] = useState(null);
   const [titleValue, setTitleValue] = useState("");
   const [bodyValue, setBodyValue] = useState("");
+  const [noteIsOpen, setNoteIsOpen] = useState(false);
+  const [noteId, setNoteId] = useState(null);
 
   useEffect(() => {
     axios.get("http://localhost:3001/notes").then(({ data }) => {
@@ -45,6 +47,8 @@ function MainApp() {
     const newLists = notes.filter((item) => item.id !== id);
     setNotes(newLists);
   };
+
+  console.log(noteIsOpen);
 
   return (
     <div className="wrapper">
@@ -94,13 +98,25 @@ function MainApp() {
                 notes={notes}
                 setTitleValue={setTitleValue}
                 setBodyValue={setBodyValue}
+                noteIsOpen={noteIsOpen}
+                noteId={noteId}
+                setNotes={setNotes}
+                setNoteIsOpen={setNoteIsOpen}
               />
             </Route>
             <Route path="/search">
               <Search />
             </Route>
             <Route path="/notes">
-              <Notes notes={notes} onRemove={onRemove} />
+              <Notes
+                notes={notes}
+                onRemove={onRemove}
+                setTitleValue={setTitleValue}
+                setBodyValue={setBodyValue}
+                setNoteIsOpen={setNoteIsOpen}
+                noteIsOpen={noteIsOpen}
+                setNoteId={setNoteId}
+              />
             </Route>
           </Switch>
         </div>

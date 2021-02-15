@@ -2,9 +2,16 @@ import React, { useState } from "react";
 import NotesContainer from "../NotesContainer/NotesContainer";
 import "./Notes.scss";
 
-const Notes = ({ notes, onRemove }) => {
+const Notes = ({
+  notes,
+  onRemove,
+  setTitleValue,
+  setBodyValue,
+  setNoteIsOpen,
+  noteIsOpen,
+  setNoteId,
+}) => {
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(searchTerm);
   const testSearch = ["Test1", "Test2", "Test3", "Test4", "Test5"];
 
   return (
@@ -21,7 +28,15 @@ const Notes = ({ notes, onRemove }) => {
           name.toLowerCase().includes(searchTerm.toLowerCase())
         )
       ) : (
-        <NotesContainer notes={notes} onRemove={onRemove} />
+        <NotesContainer
+          notes={notes}
+          onRemove={onRemove}
+          setTitleValue={setTitleValue}
+          setBodyValue={setBodyValue}
+          setNoteIsOpen={setNoteIsOpen}
+          noteIsOpen={noteIsOpen}
+          setNoteId={setNoteId}
+        />
       )}
     </div>
   );

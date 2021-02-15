@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import React from "react";
+import axios from "axios";
 
 import "./NoteField.scss";
 
@@ -13,7 +13,44 @@ const NoteField = ({
   setTitleValue,
   setBodyValue,
   colors,
+  noteIsOpen,
+  noteId,
+  setNotes,
+  setNoteIsOpen,
 }) => {
+  const saveNote = () => {
+    if (!titleValue) {
+      alert("Введите название списка");
+      return;
+    }
+
+    if (notes) {
+      const newList = notes.map((item) => {
+        if (item.id === noteId) {
+          // Заменяем старое название на новое
+          item.title = titleValue;
+          item.body = bodyValue;
+        }
+        return item;
+      });
+      setNotes(newList);
+    }
+
+    axios
+      .patch("http://localhost:3001/notes/" + noteId, {
+        title: titleValue,
+        body: bodyValue,
+      })
+      .then(
+        setNoteIsOpen((noteIsOpen) => !noteIsOpen),
+        setTitleValue(""),
+        setBodyValue("")
+      )
+      .catch(() => {
+        alert("Ошибка при добавлении списка!");
+      });
+  };
+
   return (
     <div className="main-frame">
       <div className="top-bar">
@@ -37,13 +74,22 @@ const NoteField = ({
             />
           </form>
         </div>
-        <AddNote
-          onAdd={onAddNote}
-          titleValue={titleValue}
-          bodyValue={bodyValue}
-          notes={notes}
-          colors={colors}
-        />
+        {noteIsOpen ? (
+          <div className="edit-note-button-field">
+            <button className="save-note-button" onClick={saveNote}>
+              Save Note
+            </button>
+            <button className="cancel-note-button">Cancel</button>
+          </div>
+        ) : (
+          <AddNote
+            onAdd={onAddNote}
+            titleValue={titleValue}
+            bodyValue={bodyValue}
+            notes={notes}
+            colors={colors}
+          />
+        )}
       </div>
     </div>
   );
