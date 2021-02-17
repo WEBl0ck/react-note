@@ -4,9 +4,14 @@ import "./AddNote.scss";
 
 import axios from "axios";
 
-const AddNote = ({ onAdd, titleValue, bodyValue, colors }) => {
-  //const [selectedColor, selectColor] = useState(3);
-
+const AddNote = ({
+  onAdd,
+  titleValue,
+  bodyValue,
+  colors,
+  selectedColor,
+  colorHex,
+}) => {
   const addNote = () => {
     if (!titleValue) {
       alert("Введите название списка");
@@ -16,7 +21,7 @@ const AddNote = ({ onAdd, titleValue, bodyValue, colors }) => {
       .post("http://localhost:3001/notes", {
         title: titleValue,
         body: bodyValue,
-        //colorId: selectedColor,
+        colorHex: colorHex,
       })
       .then(({ data }) => {
         //const color = colors.filter((c) => c.id === selectedColor)[0];

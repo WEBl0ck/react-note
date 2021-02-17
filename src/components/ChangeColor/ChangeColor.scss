@@ -1,0 +1,51 @@
+@import "../../scss/variables.scss";
+
+.add-note__popup-colors {
+  position: absolute;
+  width: 128px;
+  background-color: #4b4b4b;
+  height: 68px;
+  right: $sidebar-width + 11px;
+  border-radius: 10px;
+  padding: 6px;
+  top: 120px;
+}
+
+.add-note__button-container {
+  margin-top: 30px;
+  display: flex;
+  &:hover {
+    .add-note__info-popup {
+      opacity: 1;
+      transition: 0.55s opacity, 0.55s visibility;
+      transition-delay: 0.35s;
+    }
+  }
+}
+
+.add-note__button {
+  cursor: pointer;
+}
+
+.add-note__popup-close {
+  cursor: pointer;
+  background-color: #4b4b4b;
+  border-radius: 10px;
+  fill: #fff;
+  position: absolute;
+  right: -9px;
+  top: -9px;
+}
+
+.add-note__info-popup {
+  width: 128px;
+  background-color: #4b4b4b;
+  position: absolute;
+  right: $sidebar-width + 11px;
+  padding: 7px 6px;
+  border-radius: 5px;
+  color: #fff;
+  opacity: 0;
+  cursor: default;
+  font-size: 14px;
+}

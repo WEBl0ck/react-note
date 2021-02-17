@@ -3,6 +3,8 @@ import axios from "axios";
 
 import "./NoteField.scss";
 
+import { ReactComponent as AttentionIcon } from "../../assets/image/information.svg";
+
 import AddNote from "../AddNote/AddNote";
 
 const NoteField = ({
@@ -17,6 +19,8 @@ const NoteField = ({
   noteId,
   setNotes,
   setNoteIsOpen,
+  selectedColor,
+  colorHex,
 }) => {
   const saveNote = () => {
     if (!titleValue) {
@@ -30,6 +34,7 @@ const NoteField = ({
           // Заменяем старое название на новое
           item.title = titleValue;
           item.body = bodyValue;
+          item.colorHex = colorHex;
         }
         return item;
       });
@@ -40,6 +45,7 @@ const NoteField = ({
       .patch("http://localhost:3001/notes/" + noteId, {
         title: titleValue,
         body: bodyValue,
+        colorHex: colorHex,
       })
       .then(
         setNoteIsOpen((noteIsOpen) => !noteIsOpen),
@@ -49,6 +55,12 @@ const NoteField = ({
       .catch(() => {
         alert("Ошибка при добавлении списка!");
       });
+  };
+
+  const cancelAction = () => {
+    setNoteIsOpen((noteIsOpen) => !noteIsOpen);
+    setTitleValue("");
+    setBodyValue("");
   };
 
   return (
@@ -61,6 +73,12 @@ const NoteField = ({
           onChange={(e) => setTitleValue(e.target.value)}
           placeholder="Type title here"
         />
+        {(titleValue || bodyValue) && (
+          <div className="note-unsaved-changes">
+            <p>Unsaved changes</p>
+            <AttentionIcon className="unsaved-changes-icon" width="23" />
+          </div>
+        )}
         <form name="note-title-form" action="/"></form>
       </div>
       <div className="note-menu">
@@ -79,7 +97,9 @@ const NoteField = ({
             <button className="save-note-button" onClick={saveNote}>
               Save Note
             </button>
-            <button className="cancel-note-button">Cancel</button>
+            <button className="cancel-note-button" onClick={cancelAction}>
+              Cancel
+            </button>
           </div>
         ) : (
           <AddNote
@@ -88,6 +108,8 @@ const NoteField = ({
             bodyValue={bodyValue}
             notes={notes}
             colors={colors}
+            selectedColor={selectedColor}
+            colorHex={colorHex}
           />
         )}
       </div>

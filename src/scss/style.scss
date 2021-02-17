@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 @font-face {
   font-family: "Roboto Condensed";
   src: url(../assets/fonts/RobotoCondensed-Regular.ttf);
@@ -62,7 +64,7 @@ li {
 
 .left-sidebar,
 .right-sidebar {
-  width: 50px;
+  width: $sidebar-width;
   opacity: 0.8;
   background-color: #1e1e1e;
 }
@@ -80,14 +82,11 @@ li {
 }
 
 .sidebar-container {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 1rem 0.3rem;
   align-items: center;
-}
-
-.left-sidebar-container {
-  height: 100vh;
 }
 
 .left-sidebar-icon,
@@ -96,29 +95,44 @@ li {
   cursor: pointer;
 }
 
-.left-sidebar__setting-icon,
-.left-sidebar__user-icon,
-.left-sidebar__notes-icon,
-.left-sidebar__search-icon,
-.left-sidebar__create-icon {
-  img {
-    width: 33px;
-    cursor: pointer;
-    margin-bottom: 1.2rem;
-    &:hover {
-      color: #fff;
-    }
-  }
-}
-
-.left-sidebar__notes-icon {
-  margin-top: 1.8rem;
-}
-
 .left-sidebar__middle-container {
   height: 100%;
 }
 
 .main-frame {
   background-color: #333333;
+}
+
+.left-sidebar__create-icon,
+.left-sidebar__notes-icon,
+.left-sidebar__setting-icon,
+.left-sidebar__info-icon {
+  margin-top: 30px;
+  a {
+    height: 100% !important;
+    display: flex;
+    width: 49px;
+    &:hover {
+      fill: #fff;
+    }
+  }
+  svg {
+    margin-left: 7px;
+  }
+}
+
+.create-icon {
+  height: 30px !important;
+}
+
+.is-active {
+  border-left: 2px solid #fff !important;
+}
+
+.transparent-border {
+  border-left: 2px solid transparent;
+}
+
+.right-sidebar__inner-container {
+  height: 100%;
 }

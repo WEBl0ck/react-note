@@ -8,12 +8,15 @@ import "./NotesContainer.scss";
 
 const NotesContainer = ({
   notes,
+  colors,
   onRemove,
   setTitleValue,
   setBodyValue,
   setNoteIsOpen,
   noteIsOpen,
   setNoteId,
+  selectedColor,
+  colorHex,
 }) => {
   const removeList = (item) => {
     if (window.confirm("Вы действительно хотите удалить заметку?")) {
@@ -33,11 +36,13 @@ const NotesContainer = ({
   return notes ? (
     <Container fluid>
       <Row className="notes-list">
-        {notes.map((item, index) => (
-          <Col className="note-item" key={index}>
-            <div className="note-item__title">
-              {item.title}|{item.id}
-            </div>
+        {notes.map((item) => (
+          <Col
+            className="note-item"
+            style={{ backgroundColor: item.colorHex }}
+            key={item.id}
+          >
+            <div className="note-item__title">{item.title}</div>
             <div className="note-item__body">{item.body}</div>
             <button
               className="note-item__open-button"

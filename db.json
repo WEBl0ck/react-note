@@ -1,47 +1,22 @@
 {
   "notes": [
     {
-      "id": 1,
-      "title": "Changed",
-      "body": "test body text 12 ways"
+      "title": "Updated Task List",
+      "body": "1) Finish Search Line Logic\n2) You can change notes background color | finished\n3) White theme \n4) Change design, make it better | finished\n5) Create \"unsaved changes\" notification | finished\n6) Create Download button\n7) Change font size and save it to db\n8) Change editor theme \n9) Numeric colons\n10) Links \n11) Note creation date",
+      "colorHex": "#FF6464",
+      "id": 1
     },
     {
-      "title": "ss",
-      "body": "sss 12",
-      "id": 16
+      "title": "Proverka ",
+      "body": "Sviazi",
+      "colorHex": "#42B883",
+      "id": 3
     },
     {
-      "title": "Nice text",
-      "body": "Aweasome Body ",
-      "id": 17
-    },
-    {
-      "title": "Testing",
-      "body": "Another note",
-      "id": 18
-    },
-    {
-      "title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum typesetting industry. Lorem Ipsum",
-      "body": "typesetting industry. Lorem Ipsumtypesetting industry. Lorem Ipsumtypesetting industry. Lorem Ipsumtypesetting industry. Lorem Ipsum",
-      "id": 20
-    },
-    {
-      "title": "TaskList",
-      "body": "1) Finish Search Line Logic\n2) You can change notes background color\n3) White theme \n4) Change design, make it better\n5) Create \"unsaved changes\" notification\n6) Create Download button\n7) Change font size and save it to db\n8) Change editor theme \n9) Numeric colons\n10) Links \n\n ",
-      "colorId": 3,
-      "id": 21
-    },
-    {
-      "title": "Testing 123",
-      "body": "SSS true",
-      "colorId": 3,
-      "id": 22
-    },
-    {
-      "title": "gg",
-      "body": "ff bb",
-      "colorId": 3,
-      "id": 23
+      "title": "Wow i finish it ",
+      "body": "Boop Boop Boop ",
+      "colorHex": "#C355F5",
+      "id": 4
     }
   ],
   "colors": [
