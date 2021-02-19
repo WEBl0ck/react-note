@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import classNames from "classnames";
 
 import "./scss/style.scss";
 import "./scss/variables.scss";
@@ -11,6 +12,7 @@ import Search from "./components/Search/Search";
 import Settings from "./components/Settings/Settings";
 import Info from "./components/Info/Info";
 import ChangeColor from "./components/ChangeColor/ChangeColor";
+import LeftArrowButton from "./components/LeftArrowButton/LeftArrowButton";
 
 import {
   BrowserRouter as Router,
@@ -19,8 +21,8 @@ import {
   NavLink,
 } from "react-router-dom";
 
-import rightArrow from "./assets/image/left-arrow-line-symbol.svg";
-import leftArrow from "./assets/image/right-arrow-angle.svg";
+import { ReactComponent as RightArrow } from "./assets/image/left-arrow-line-symbol.svg";
+
 import { ReactComponent as SettingsIcon } from "./assets/image/settingsBold.svg";
 import { ReactComponent as NotesIcon } from "./assets/image/all-notes.svg";
 import { ReactComponent as CreateIcon } from "./assets/image/pen.svg";
@@ -31,11 +33,12 @@ function MainApp() {
   const [colors, setColors] = useState(null);
   const [selectedColor, setSelectedColor] = useState(3);
   const [colorName, setColorName] = useState("pink");
-  const [colorHex, setColorHex] = useState(null);
+  const [colorHex, setColorHex] = useState("#FFBBCC");
   const [titleValue, setTitleValue] = useState("");
   const [bodyValue, setBodyValue] = useState("");
   const [noteIsOpen, setNoteIsOpen] = useState(false);
   const [noteId, setNoteId] = useState(null);
+  const [sidebarToogle, setSidebarToogle] = useState(false);
 
   useEffect(() => {
     axios.get("http://localhost:3001/notes").then(({ data }) => {
@@ -71,13 +74,25 @@ function MainApp() {
     setColorHex(color.hex);
   };
 
+  const changeSidebar = () => {
+    setSidebarToogle((sidebarToogle) => !sidebarToogle);
+  };
+
   return (
     <div className="wrapper">
       <Router>
-        <div>
-          <div className="left-sidebar">
+        <React.Fragment>
+          <div
+            className={classNames(
+              "left-sidebar",
+              sidebarToogle && "left-sidebar-active test"
+            )}
+          >
             <div className="left-sidebar-container sidebar-container">
-              <img src={leftArrow} alt="" className="left-sidebar-icon" />
+              <LeftArrowButton
+                changeSidebar={changeSidebar}
+                sidebarToogle={sidebarToogle}
+              />
               <div className="left-sidebar__top-container">
                 <div className="left-sidebar__notes-icon">
                   <NavLink
@@ -86,6 +101,11 @@ function MainApp() {
                     to="/notes"
                   >
                     <NotesIcon className="notes-icon" width="33" height="33" />
+                    {sidebarToogle && (
+                      <p className="left-sidebar__notes-text left-sidebar__notes">
+                        All Notes
+                      </p>
+                    )}
                   </NavLink>
                 </div>
 
@@ -101,6 +121,11 @@ function MainApp() {
                       height="33"
                       width="33"
                     />
+                    {sidebarToogle && (
+                      <p className="left-sidebar__notes-text left-sidebar__create">
+                        Create Note
+                      </p>
+                    )}
                   </NavLink>
                 </div>
               </div>
@@ -113,6 +138,11 @@ function MainApp() {
                     to="/settings"
                   >
                     <SettingsIcon width="33" height="33" />
+                    {sidebarToogle && (
+                      <p className="left-sidebar__notes-text left-sidebar__create">
+                        Settings
+                      </p>
+                    )}
                   </NavLink>
                 </div>
                 <div className="left-sidebar__info-icon">
@@ -122,18 +152,20 @@ function MainApp() {
                     to="/info"
                   >
                     <AttentionIcon width="33" height="33" />
+                    {sidebarToogle && (
+                      <p className="left-sidebar__notes-text">Information</p>
+                    )}
                   </NavLink>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </React.Fragment>
 
         <div className="main-frame">
           <Switch>
             <Route exact path="/">
               <NoteField
-                colors={colors}
                 onAddNote={onAddNote}
                 titleValue={titleValue}
                 bodyValue={bodyValue}
@@ -144,7 +176,6 @@ function MainApp() {
                 noteId={noteId}
                 setNotes={setNotes}
                 setNoteIsOpen={setNoteIsOpen}
-                selectedColor={selectedColor}
                 colorHex={colorHex}
               />
             </Route>
@@ -154,15 +185,12 @@ function MainApp() {
             <Route path="/notes">
               <Notes
                 notes={notes}
-                colors={colors}
                 onRemove={onRemove}
                 setTitleValue={setTitleValue}
                 setBodyValue={setBodyValue}
                 setNoteIsOpen={setNoteIsOpen}
                 noteIsOpen={noteIsOpen}
                 setNoteId={setNoteId}
-                selectedColor={selectedColor}
-                colorHex={colorHex}
               />
             </Route>
             <Route path="/settings">
@@ -175,7 +203,7 @@ function MainApp() {
         </div>
         <div className="right-sidebar">
           <div className="right-sidebar-container sidebar-container">
-            <img src={rightArrow} alt="" className="right-sidebar-icon" />
+            <RightArrow width="33" height="33" className="right-sidebar-icon" />
             <div className="right-sidebar__inner-container">
               <ChangeColor
                 colors={colors}

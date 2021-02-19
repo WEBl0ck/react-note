@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
+import ShowNotification from "../ShowNotification/ShowNotification";
 
 import "./AddNote.scss";
 
 import axios from "axios";
 
-const AddNote = ({
-  onAdd,
-  titleValue,
-  bodyValue,
-  colors,
-  selectedColor,
-  colorHex,
-}) => {
+const AddNote = ({ onAdd, titleValue, bodyValue, colorHex }) => {
+  const [createNotification, setCreateNotification] = useState(false);
+
+  useEffect(() => {
+    let showCreateNotification = setTimeout(
+      () => setCreateNotification(false),
+      3000
+    );
+
+    return () => {
+      clearTimeout(showCreateNotification);
+    };
+  }, [createNotification]);
+
+  const showCreateNotification = () => {
+    setCreateNotification((createNotification) => !createNotification);
+  };
+
   const addNote = () => {
     if (!titleValue) {
       alert("Введите название списка");
@@ -24,7 +36,6 @@ const AddNote = ({
         colorHex: colorHex,
       })
       .then(({ data }) => {
-        //const color = colors.filter((c) => c.id === selectedColor)[0];
         const listObj = { ...data };
         onAdd(listObj);
       })
@@ -35,9 +46,21 @@ const AddNote = ({
 
   return (
     <div className="create-note-button-field">
-      <button className="create-note-button" onClick={addNote}>
+      <button
+        className="create-note-button"
+        onClick={() => {
+          addNote();
+          showCreateNotification();
+        }}
+      >
         Create Note
       </button>
+      {createNotification && (
+        <ShowNotification
+          notificationName={"Note Created"}
+          notificationColor={"rgba(0, 225, 60, 0.8)"}
+        />
+      )}
     </div>
   );
 };

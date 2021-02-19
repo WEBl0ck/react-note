@@ -1,14 +1,15 @@
 .create-note-button-field {
-  margin-top: 2rem;
+  position: absolute;
+  bottom: 50px;
 }
 
 .create-note-button {
+  background-color: #00b33c;
   font-size: 1.2rem;
   font-weight: 700;
   color: #fff;
   padding: 10px 20px;
   opacity: 0.6;
-  background-color: #00b33c;
   display: flex;
   justify-content: center;
   align-items: center;

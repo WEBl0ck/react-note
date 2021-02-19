@@ -1,0 +1,41 @@
+.note-notification {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  padding: 10px 20px;
+  opacity: 0.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.note-notification {
+  position: fixed;
+  cursor: default;
+  // 92,255,80
+  color: #fff;
+  bottom: -50px;
+  right: 70px;
+  animation-name: notification-animation;
+  animation-duration: 3s;
+}
+
+@keyframes notification-animation {
+  0% {
+    bottom: -50px;
+    opacity: 0;
+  }
+  50% {
+    bottom: 50px;
+    opacity: 1;
+  }
+  100% {
+    bottom: 70px;
+    opacity: 0;
+  }
+}
+
+.note-notification-icon {
+  margin-left: 6px;
+}

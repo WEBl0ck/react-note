@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import "./NoteField.scss";
 
 import { ReactComponent as AttentionIcon } from "../../assets/image/information.svg";
+
+import ShowNotification from "../ShowNotification/ShowNotification";
 
 import AddNote from "../AddNote/AddNote";
 
@@ -14,14 +16,29 @@ const NoteField = ({
   notes,
   setTitleValue,
   setBodyValue,
-  colors,
   noteIsOpen,
   noteId,
   setNotes,
   setNoteIsOpen,
-  selectedColor,
   colorHex,
 }) => {
+  const [saveNotification, setSaveNotification] = useState(false);
+
+  useEffect(() => {
+    let showSaveNotificationVariable = setTimeout(
+      () => setSaveNotification(false),
+      3000
+    );
+
+    return () => {
+      clearTimeout(showSaveNotificationVariable);
+    };
+  }, [saveNotification]);
+
+  const showSaveNotification = () => {
+    setSaveNotification((saveNotification) => !saveNotification);
+  };
+
   const saveNote = () => {
     if (!titleValue) {
       alert("Введите название списка");
@@ -31,7 +48,6 @@ const NoteField = ({
     if (notes) {
       const newList = notes.map((item) => {
         if (item.id === noteId) {
-          // Заменяем старое название на новое
           item.title = titleValue;
           item.body = bodyValue;
           item.colorHex = colorHex;
@@ -91,10 +107,22 @@ const NoteField = ({
               onChange={(e) => setBodyValue(e.target.value)}
             />
           </form>
+          {saveNotification && (
+            <ShowNotification
+              notificationName={"Note Saved"}
+              notificationColor={"rgba(65, 67, 222, 0.8)"}
+            />
+          )}
         </div>
         {noteIsOpen ? (
           <div className="edit-note-button-field">
-            <button className="save-note-button" onClick={saveNote}>
+            <button
+              className="save-note-button"
+              onClick={() => {
+                saveNote();
+                showSaveNotification();
+              }}
+            >
               Save Note
             </button>
             <button className="cancel-note-button" onClick={cancelAction}>
@@ -106,9 +134,6 @@ const NoteField = ({
             onAdd={onAddNote}
             titleValue={titleValue}
             bodyValue={bodyValue}
-            notes={notes}
-            colors={colors}
-            selectedColor={selectedColor}
             colorHex={colorHex}
           />
         )}

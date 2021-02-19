@@ -1,27 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 
 import { Container, Row, Col } from "react-bootstrap";
 
+import ShowNotification from "../ShowNotification/ShowNotification";
+
 import "./NotesContainer.scss";
 
 const NotesContainer = ({
   notes,
-  colors,
   onRemove,
   setTitleValue,
   setBodyValue,
   setNoteIsOpen,
   noteIsOpen,
   setNoteId,
-  selectedColor,
-  colorHex,
 }) => {
+  const [deleteNotification, setDeleteNotification] = useState(false);
+
+  useEffect(() => {
+    let showDeleteNotification = setTimeout(
+      () => setDeleteNotification(false),
+      3000
+    );
+
+    return () => {
+      clearTimeout(showDeleteNotification);
+    };
+  }, [deleteNotification]);
+
+  const showDeleteNotification = () => {
+    setDeleteNotification((deleteNotification) => !deleteNotification);
+  };
+
   const removeList = (item) => {
     if (window.confirm("Вы действительно хотите удалить заметку?")) {
       axios.delete("http://localhost:3001/notes/" + item.id).then(() => {
         onRemove(item.id);
+        showDeleteNotification();
       });
     }
   };
@@ -34,7 +51,7 @@ const NotesContainer = ({
   };
 
   return notes ? (
-    <Container fluid>
+    <Container fluid className="notes-container">
       <Row className="notes-list">
         {notes.map((item) => (
           <Col
@@ -60,13 +77,21 @@ const NotesContainer = ({
             {}
             <button
               className="note-item__delete-button"
-              onClick={() => removeList(item)}
+              onClick={() => {
+                removeList(item);
+              }}
             >
               Delete
             </button>
           </Col>
         ))}
       </Row>
+      {deleteNotification && (
+        <ShowNotification
+          notificationName={"Note Deleted"}
+          notificationColor={"rgba(224, 67, 83, 0.8)"}
+        />
+      )}
     </Container>
   ) : (
     "Loading..."
