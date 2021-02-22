@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
 import "./NoteField.scss";
 
 import { ReactComponent as AttentionIcon } from "../../assets/image/information.svg";
 
 import ShowNotification from "../ShowNotification/ShowNotification";
-
 import AddNote from "../AddNote/AddNote";
 
 const NoteField = ({
   onAddNote,
   titleValue,
   bodyValue,
-  notes,
-  setTitleValue,
-  setBodyValue,
-  noteIsOpen,
-  noteId,
-  setNotes,
-  setNoteIsOpen,
+  cancelAction,
   colorHex,
+  colorName,
+  saveNote,
+  changeTitleValue,
+  changeBodyValue,
+  noteIsOpen,
 }) => {
   const [saveNotification, setSaveNotification] = useState(false);
 
@@ -39,46 +36,6 @@ const NoteField = ({
     setSaveNotification((saveNotification) => !saveNotification);
   };
 
-  const saveNote = () => {
-    if (!titleValue) {
-      alert("Введите название списка");
-      return;
-    }
-
-    if (notes) {
-      const newList = notes.map((item) => {
-        if (item.id === noteId) {
-          item.title = titleValue;
-          item.body = bodyValue;
-          item.colorHex = colorHex;
-        }
-        return item;
-      });
-      setNotes(newList);
-    }
-
-    axios
-      .patch("http://localhost:3001/notes/" + noteId, {
-        title: titleValue,
-        body: bodyValue,
-        colorHex: colorHex,
-      })
-      .then(
-        setNoteIsOpen((noteIsOpen) => !noteIsOpen),
-        setTitleValue(""),
-        setBodyValue("")
-      )
-      .catch(() => {
-        alert("Ошибка при добавлении списка!");
-      });
-  };
-
-  const cancelAction = () => {
-    setNoteIsOpen((noteIsOpen) => !noteIsOpen);
-    setTitleValue("");
-    setBodyValue("");
-  };
-
   return (
     <div className="main-frame">
       <div className="top-bar">
@@ -86,7 +43,7 @@ const NoteField = ({
           className="note-title-field"
           type="text"
           value={titleValue}
-          onChange={(e) => setTitleValue(e.target.value)}
+          onChange={(e) => changeTitleValue(e.target.value)}
           placeholder="Type title here"
         />
         {(titleValue || bodyValue) && (
@@ -104,7 +61,7 @@ const NoteField = ({
               className="note-body-field"
               type="text"
               value={bodyValue}
-              onChange={(e) => setBodyValue(e.target.value)}
+              onChange={(e) => changeBodyValue(e.target.value)}
             />
           </form>
           {saveNotification && (
@@ -135,6 +92,7 @@ const NoteField = ({
             titleValue={titleValue}
             bodyValue={bodyValue}
             colorHex={colorHex}
+            colorName={colorName}
           />
         )}
       </div>

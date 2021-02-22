@@ -6,7 +6,7 @@ import "./AddNote.scss";
 
 import axios from "axios";
 
-const AddNote = ({ onAdd, titleValue, bodyValue, colorHex }) => {
+const AddNote = ({ onAdd, titleValue, bodyValue, colorHex, colorName }) => {
   const [createNotification, setCreateNotification] = useState(false);
 
   useEffect(() => {
@@ -42,6 +42,10 @@ const AddNote = ({ onAdd, titleValue, bodyValue, colorHex }) => {
       .catch(() => {
         alert("Ошибка при добавлении списка!");
       });
+    axios.patch("http://localhost:3001/selectedColor/1", {
+      hex: colorHex,
+      colorName: colorName,
+    });
   };
 
   return (

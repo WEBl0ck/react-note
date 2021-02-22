@@ -77,7 +77,7 @@ p {
   float: right;
 }
 
-.left-sidebar-active {
+.sidebar-active {
   width: 250px !important;
 }
 
@@ -115,8 +115,18 @@ p {
 
 .left-sidebar-icon-active {
   position: absolute;
-  left: 10rem;
+  left: 9rem;
   transform: rotate(180deg);
+}
+
+.right-sidebar-icon-active {
+  position: absolute;
+  right: 9rem;
+  transform: rotate(180deg);
+}
+
+.right-sidebar-container {
+  float: right;
 }
 
 .left-sidebar__middle-container {

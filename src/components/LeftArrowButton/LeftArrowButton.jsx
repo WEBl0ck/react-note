@@ -1,14 +1,14 @@
 import React from "react";
 import classNames from "classnames";
 
-const LeftArrowButton = ({ changeSidebar, sidebarToogle }) => {
+const LeftArrowButton = ({ changeLeftSidebar, leftSidebarToogle }) => {
   return (
     <div
       className={classNames(
         "left-sidebar-icon",
-        sidebarToogle && "left-sidebar-icon-active"
+        leftSidebarToogle && "left-sidebar-icon-active"
       )}
-      onClick={changeSidebar}
+      onClick={changeLeftSidebar}
     >
       <svg x="0px" y="0px" width="33" height="32" viewBox="0 0 792.033 792.033">
         <g>

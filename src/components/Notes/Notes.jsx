@@ -5,14 +5,13 @@ import "./Notes.scss";
 const Notes = ({
   notes,
   onRemove,
-  setTitleValue,
-  setBodyValue,
-  setNoteIsOpen,
   noteIsOpen,
   setNoteId,
+  changeTitleValue,
+  changeBodyValue,
+  openNote,
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const testSearch = ["Test1", "Test2", "Test3", "Test4", "Test5"];
 
   return (
     <div className="notes-frame">
@@ -23,21 +22,17 @@ const Notes = ({
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Search..."
       />
-      {searchTerm ? (
-        testSearch.filter((name) =>
-          name.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-      ) : (
-        <NotesContainer
-          notes={notes}
-          onRemove={onRemove}
-          setTitleValue={setTitleValue}
-          setBodyValue={setBodyValue}
-          setNoteIsOpen={setNoteIsOpen}
-          noteIsOpen={noteIsOpen}
-          setNoteId={setNoteId}
-        />
-      )}
+
+      <NotesContainer
+        notes={notes}
+        onRemove={onRemove}
+        changeTitleValue={changeTitleValue}
+        changeBodyValue={changeBodyValue}
+        openNote={openNote}
+        noteIsOpen={noteIsOpen}
+        setNoteId={setNoteId}
+        searchTerm={searchTerm}
+      />
     </div>
   );
 };

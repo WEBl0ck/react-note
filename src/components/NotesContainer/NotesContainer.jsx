@@ -11,13 +11,16 @@ import "./NotesContainer.scss";
 const NotesContainer = ({
   notes,
   onRemove,
-  setTitleValue,
-  setBodyValue,
-  setNoteIsOpen,
+  changeTitleValue,
+  changeBodyValue,
   noteIsOpen,
   setNoteId,
+  openNote,
+  searchTerm,
 }) => {
   const [deleteNotification, setDeleteNotification] = useState(false);
+
+  const currentNotes = notes || [];
 
   useEffect(() => {
     let showDeleteNotification = setTimeout(
@@ -44,48 +47,53 @@ const NotesContainer = ({
   };
 
   const openNoteHandler = (item) => {
-    setNoteIsOpen((noteIsOpen) => !noteIsOpen);
-    setTitleValue(item.title);
-    setBodyValue(item.body);
+    openNote();
+    changeTitleValue(item.title);
+    changeBodyValue(item.body);
     setNoteId(item.id);
   };
 
-  return notes ? (
+  const data = currentNotes.map((item) => (
+    <Col
+      className="note-item"
+      style={{ backgroundColor: item.colorHex }}
+      key={item.id}
+    >
+      <div className="note-item__title">{item.title}</div>
+      <div className="note-item__body">{item.body}</div>
+      <button
+        className="note-item__open-button"
+        onClick={() => openNoteHandler(item)}
+      >
+        Open
+      </button>
+      {noteIsOpen && (
+        <Redirect
+          to={{
+            pathname: "/",
+          }}
+        />
+      )}
+      <button
+        className="note-item__delete-button"
+        onClick={() => {
+          removeList(item);
+        }}
+      >
+        Delete
+      </button>
+    </Col>
+  ));
+
+  let filteredData = data.filter((e) => {
+    return e.props.children[0].props.children
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+  });
+
+  return currentNotes ? (
     <Container fluid className="notes-container">
-      <Row className="notes-list">
-        {notes.map((item) => (
-          <Col
-            className="note-item"
-            style={{ backgroundColor: item.colorHex }}
-            key={item.id}
-          >
-            <div className="note-item__title">{item.title}</div>
-            <div className="note-item__body">{item.body}</div>
-            <button
-              className="note-item__open-button"
-              onClick={() => openNoteHandler(item)}
-            >
-              Open
-            </button>
-            {noteIsOpen && (
-              <Redirect
-                to={{
-                  pathname: "/",
-                }}
-              />
-            )}
-            {}
-            <button
-              className="note-item__delete-button"
-              onClick={() => {
-                removeList(item);
-              }}
-            >
-              Delete
-            </button>
-          </Col>
-        ))}
-      </Row>
+      <Row className="notes-list">{searchTerm ? filteredData : data}</Row>
       {deleteNotification && (
         <ShowNotification
           notificationName={"Note Deleted"}

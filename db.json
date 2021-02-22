@@ -2,93 +2,27 @@
   "notes": [
     {
       "title": "Updated Task List",
-      "body": "1) Finish Search Line Logic\n2) You can change notes background color | finished\n3) White theme \n4) Change design, make it better | finished\n5) Create \"unsaved changes\" notification | finished\n7) Change font size and save it to db\n9) Numeric colons\n10) Links \n11) Note creation date\n12) Add current color hex to db and update it \n13) update right sidebar\n14) add settings\n15) add information and animation\n16) Code refactoring || Bugs fixing",
-      "colorHex": "#FFBBCC",
+      "body": "1) Finish Search Line Logic | finished\n2) You can change notes background color | finished\n3) White theme \n4) Change design, make it better | finished\n5) Create \"unsaved changes\" notification | finished\n10) Links \n11) Note creation date\n12) Add current color hex to db and update it  | finished\n13) update right sidebar | finished\n14) add settings\n15) add information and animation\n16) Code refactoring || Bugs fixing | Almost done\n17) Add adaptive design and fix style bugs",
+      "colorHex": "#64C4ED",
       "id": 1
     },
     {
-      "title": "Bip boop ",
-      "body": "Boop Boop Boop ",
-      "colorHex": "#FF6464",
-      "id": 4
+      "title": "Async testing",
+      "body": "Internet is very slow\nI change this note ",
+      "colorHex": "#42B883",
+      "id": 5
     },
     {
-      "title": "Het",
-      "body": "TEST w",
-      "colorHex": "#FFBBCC",
-      "id": 8
+      "title": "wds",
+      "body": "s",
+      "colorHex": "#42B883",
+      "id": 6
     },
     {
-      "title": "l",
-      "body": "n",
-      "colorHex": "#FFBBCC",
-      "id": 13
-    },
-    {
-      "title": "gfdg",
-      "body": "fdf",
-      "colorHex": "#FFBBCC",
-      "id": 14
-    },
-    {
-      "title": "h",
-      "body": "jh",
-      "colorHex": "#FFBBCC",
-      "id": 15
-    },
-    {
-      "title": "kj",
-      "body": "j",
-      "colorHex": "#FFBBCC",
-      "id": 16
-    },
-    {
-      "title": "b",
-      "body": "",
-      "colorHex": "#FFBBCC",
-      "id": 17
-    },
-    {
-      "title": "Wow ",
-      "body": "nice work",
-      "colorHex": "#B6E6BD",
-      "id": 18
-    },
-    {
-      "title": "as",
-      "body": "",
-      "colorHex": "#FF6464",
-      "id": 19
-    },
-    {
-      "title": "ws",
-      "body": "a",
-      "colorHex": "#FFBBCC",
-      "id": 20
-    },
-    {
-      "title": "WDS",
-      "body": "ds",
-      "colorHex": "#B6E6BD",
-      "id": 21
-    },
-    {
-      "title": "Working!",
-      "body": "",
-      "colorHex": "#FFBBCC",
-      "id": 22
-    },
-    {
-      "title": "wasdw",
-      "body": "fssasds",
-      "colorHex": "#FFBBCC",
-      "id": 23
-    },
-    {
-      "title": "last test",
-      "body": "f",
-      "colorHex": "#FFBBCC",
-      "id": 24
+      "title": "Last async testing ",
+      "body": "dd",
+      "colorHex": "#64C4ED",
+      "id": 7
     }
   ],
   "colors": [
@@ -131,6 +65,13 @@
       "id": 8,
       "hex": "#FF6464",
       "name": "red"
+    }
+  ],
+  "selectedColor": [
+    {
+      "id": 1,
+      "hex": "#64C4ED",
+      "colorName": "blue"
     }
   ]
 }

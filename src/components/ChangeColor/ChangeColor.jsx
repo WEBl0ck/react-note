@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 
-import { ReactComponent as CancelIcon } from "../../assets/image/cancel.svg";
-
 import "./ChangeColor.scss";
 
 import Badge from "../Badge/Badge";
+import ColorsPopup from "../ColorsPopup/ColorsPopup";
 
 const ChangeColor = ({ colors, changeColor, selectedColor, colorName }) => {
   const [isOpened, setIsOpened] = useState(false);
 
-  const popupToggle = () => {
+  const popupToggle = (e) => {
     setIsOpened((isOpened) => !isOpened);
   };
 
@@ -24,23 +23,12 @@ const ChangeColor = ({ colors, changeColor, selectedColor, colorName }) => {
         />
       </div>
       {isOpened && (
-        <div className="add-note__popup-colors">
-          {colors &&
-            colors.map((color) => (
-              <Badge
-                onClick={() => changeColor(color)}
-                key={color.id}
-                color={color.name}
-                className={selectedColor === color.id && "active"}
-              />
-            ))}
-          <CancelIcon
-            className="add-note__popup-close"
-            height="18"
-            width="18"
-            onClick={popupToggle}
-          />
-        </div>
+        <ColorsPopup
+          colors={colors}
+          popupToggle={popupToggle}
+          changeColor={changeColor}
+          selectedColor={selectedColor}
+        />
       )}
     </React.Fragment>
   );

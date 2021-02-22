@@ -13,6 +13,7 @@ import Settings from "./components/Settings/Settings";
 import Info from "./components/Info/Info";
 import ChangeColor from "./components/ChangeColor/ChangeColor";
 import LeftArrowButton from "./components/LeftArrowButton/LeftArrowButton";
+import RightArrowButton from "./components/RightArrowButton/RightArrowButton";
 
 import {
   BrowserRouter as Router,
@@ -20,8 +21,6 @@ import {
   Route,
   NavLink,
 } from "react-router-dom";
-
-import { ReactComponent as RightArrow } from "./assets/image/left-arrow-line-symbol.svg";
 
 import { ReactComponent as SettingsIcon } from "./assets/image/settingsBold.svg";
 import { ReactComponent as NotesIcon } from "./assets/image/all-notes.svg";
@@ -32,13 +31,14 @@ function MainApp() {
   const [notes, setNotes] = useState(null);
   const [colors, setColors] = useState(null);
   const [selectedColor, setSelectedColor] = useState(3);
-  const [colorName, setColorName] = useState("pink");
-  const [colorHex, setColorHex] = useState("#FFBBCC");
+  const [colorName, setColorName] = useState("");
+  const [colorHex, setColorHex] = useState(null);
   const [titleValue, setTitleValue] = useState("");
   const [bodyValue, setBodyValue] = useState("");
   const [noteIsOpen, setNoteIsOpen] = useState(false);
   const [noteId, setNoteId] = useState(null);
-  const [sidebarToogle, setSidebarToogle] = useState(false);
+  const [leftSidebarToogle, setLeftSidebarToogle] = useState(false);
+  const [rightSidebarToogle, setRightSidebarToogle] = useState(false);
 
   useEffect(() => {
     axios.get("http://localhost:3001/notes").then(({ data }) => {
@@ -48,6 +48,11 @@ function MainApp() {
     axios.get("http://localhost:3001/colors").then(({ data }) => {
       setColors(data);
     });
+
+    axios.get("http://localhost:3001/selectedColor/1").then(({ data }) => {
+      setColorHex(data.hex);
+      setColorName(data.colorName);
+    });
   }, []);
 
   useEffect(() => {
@@ -55,6 +60,45 @@ function MainApp() {
       setSelectedColor(colors[0].id);
     }
   }, [colors]);
+
+  const openNote = () => {
+    setNoteIsOpen((noteIsOpen) => !noteIsOpen);
+  };
+
+  const saveNote = () => {
+    if (!titleValue) {
+      alert("Введите название списка");
+      return;
+    }
+
+    if (notes) {
+      const newList = notes.map((item) => {
+        if (item.id === noteId) {
+          item.title = titleValue;
+          item.body = bodyValue;
+          item.colorHex = colorHex;
+        }
+        return item;
+      });
+      setNotes(newList);
+    }
+
+    axios
+      .patch("http://localhost:3001/notes/" + noteId, {
+        title: titleValue,
+        body: bodyValue,
+        colorHex: colorHex,
+      })
+      .then(openNote(), setTitleValue(""), setBodyValue(""))
+      .catch(() => {
+        alert("Ошибка при добавлении списка!");
+      });
+
+    axios.patch("http://localhost:3001/selectedColor/1", {
+      hex: colorHex,
+      colorName: colorName,
+    });
+  };
 
   const onAddNote = (obj) => {
     const newList = [...notes, obj];
@@ -74,8 +118,26 @@ function MainApp() {
     setColorHex(color.hex);
   };
 
-  const changeSidebar = () => {
-    setSidebarToogle((sidebarToogle) => !sidebarToogle);
+  const cancelAction = () => {
+    openNote();
+    setTitleValue("");
+    setBodyValue("");
+  };
+
+  const changeLeftSidebar = () => {
+    setLeftSidebarToogle((leftSidebarToogle) => !leftSidebarToogle);
+  };
+
+  const changeRightSidebar = () => {
+    setRightSidebarToogle((rightSidebarToogle) => !rightSidebarToogle);
+  };
+
+  const changeTitleValue = (e, title) => {
+    setTitleValue(e, title);
+  };
+
+  const changeBodyValue = (e, body) => {
+    setBodyValue(e, body);
   };
 
   return (
@@ -85,13 +147,13 @@ function MainApp() {
           <div
             className={classNames(
               "left-sidebar",
-              sidebarToogle && "left-sidebar-active test"
+              leftSidebarToogle && "sidebar-active"
             )}
           >
             <div className="left-sidebar-container sidebar-container">
               <LeftArrowButton
-                changeSidebar={changeSidebar}
-                sidebarToogle={sidebarToogle}
+                changeLeftSidebar={changeLeftSidebar}
+                leftSidebarToogle={leftSidebarToogle}
               />
               <div className="left-sidebar__top-container">
                 <div className="left-sidebar__notes-icon">
@@ -101,7 +163,7 @@ function MainApp() {
                     to="/notes"
                   >
                     <NotesIcon className="notes-icon" width="33" height="33" />
-                    {sidebarToogle && (
+                    {leftSidebarToogle && (
                       <p className="left-sidebar__notes-text left-sidebar__notes">
                         All Notes
                       </p>
@@ -121,7 +183,7 @@ function MainApp() {
                       height="33"
                       width="33"
                     />
-                    {sidebarToogle && (
+                    {leftSidebarToogle && (
                       <p className="left-sidebar__notes-text left-sidebar__create">
                         Create Note
                       </p>
@@ -138,7 +200,7 @@ function MainApp() {
                     to="/settings"
                   >
                     <SettingsIcon width="33" height="33" />
-                    {sidebarToogle && (
+                    {leftSidebarToogle && (
                       <p className="left-sidebar__notes-text left-sidebar__create">
                         Settings
                       </p>
@@ -152,7 +214,7 @@ function MainApp() {
                     to="/info"
                   >
                     <AttentionIcon width="33" height="33" />
-                    {sidebarToogle && (
+                    {leftSidebarToogle && (
                       <p className="left-sidebar__notes-text">Information</p>
                     )}
                   </NavLink>
@@ -169,14 +231,15 @@ function MainApp() {
                 onAddNote={onAddNote}
                 titleValue={titleValue}
                 bodyValue={bodyValue}
+                changeTitleValue={changeTitleValue}
+                changeBodyValue={changeBodyValue}
                 notes={notes}
-                setTitleValue={setTitleValue}
-                setBodyValue={setBodyValue}
+                saveNote={saveNote}
+                cancelAction={cancelAction}
                 noteIsOpen={noteIsOpen}
                 noteId={noteId}
-                setNotes={setNotes}
-                setNoteIsOpen={setNoteIsOpen}
                 colorHex={colorHex}
+                colorName={colorName}
               />
             </Route>
             <Route path="/search">
@@ -186,9 +249,9 @@ function MainApp() {
               <Notes
                 notes={notes}
                 onRemove={onRemove}
-                setTitleValue={setTitleValue}
-                setBodyValue={setBodyValue}
-                setNoteIsOpen={setNoteIsOpen}
+                changeTitleValue={changeTitleValue}
+                changeBodyValue={changeBodyValue}
+                openNote={openNote}
                 noteIsOpen={noteIsOpen}
                 setNoteId={setNoteId}
               />
@@ -201,9 +264,18 @@ function MainApp() {
             </Route>
           </Switch>
         </div>
-        <div className="right-sidebar">
+
+        <div
+          className={classNames(
+            "right-sidebar",
+            rightSidebarToogle && "sidebar-active"
+          )}
+        >
           <div className="right-sidebar-container sidebar-container">
-            <RightArrow width="33" height="33" className="right-sidebar-icon" />
+            <RightArrowButton
+              changeRightSidebar={changeRightSidebar}
+              rightSidebarToogle={rightSidebarToogle}
+            />
             <div className="right-sidebar__inner-container">
               <ChangeColor
                 colors={colors}

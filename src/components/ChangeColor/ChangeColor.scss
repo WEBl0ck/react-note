@@ -12,8 +12,10 @@
 }
 
 .add-note__button-container {
-  margin-top: 30px;
   display: flex;
+  position: absolute;
+  top: 80px;
+  right: 7px;
   &:hover {
     .add-note__info-popup {
       opacity: 1;
@@ -41,7 +43,7 @@
   width: 128px;
   background-color: #4b4b4b;
   position: absolute;
-  right: $sidebar-width + 11px;
+  right: 54px;
   padding: 7px 6px;
   border-radius: 5px;
   color: #fff;
