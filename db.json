@@ -9,20 +9,50 @@
     {
       "title": "Async testing",
       "body": "Internet is very slow\nI change this note ",
-      "colorHex": "#42B883",
+      "colorHex": "#FF6464",
       "id": 5
     },
     {
-      "title": "wds",
-      "body": "s",
-      "colorHex": "#42B883",
-      "id": 6
+      "title": "test",
+      "body": "dasu",
+      "colorHex": "#C9D1D3",
+      "id": 7
     },
     {
-      "title": "Last async testing ",
-      "body": "dd",
-      "colorHex": "#64C4ED",
-      "id": 7
+      "title": "Created ",
+      "body": "one",
+      "colorHex": "#110133",
+      "id": 8
+    },
+    {
+      "title": "one more test",
+      "body": "fix u",
+      "colorHex": "#C355F5",
+      "id": 9
+    },
+    {
+      "title": "wsa",
+      "body": "",
+      "colorHex": "#110133",
+      "id": 11
+    },
+    {
+      "title": "d",
+      "body": "w",
+      "colorHex": "#FF6464",
+      "id": 12
+    },
+    {
+      "title": "Last test",
+      "body": "Testing",
+      "colorHex": "#FF6464",
+      "id": 13
+    },
+    {
+      "title": "Slow 3g check",
+      "body": "Async testing",
+      "colorHex": "#42B883",
+      "id": 14
     }
   ],
   "colors": [
@@ -70,8 +100,73 @@
   "selectedColor": [
     {
       "id": 1,
-      "hex": "#64C4ED",
-      "colorName": "blue"
+      "hex": "#42B883",
+      "colorName": "green"
+    }
+  ],
+  "settings": [
+    {
+      "id": 1,
+      "settingName": "White Theme",
+      "settingValue": false,
+      "switcher": true,
+      "dropdownDefaultValue": ""
+    },
+    {
+      "id": 2,
+      "settingName": "Show Notification",
+      "settingValue": false,
+      "switcher": true,
+      "dropdownDefaultValue": ""
+    },
+    {
+      "id": 3,
+      "settingName": "Bold Text",
+      "settingValue": false,
+      "switcher": true,
+      "dropdownDefaultValue": ""
+    },
+    {
+      "id": 4,
+      "settingName": "Language",
+      "settingValue": false,
+      "switcher": false,
+      "dropdownDefaultValue": "",
+      "dropdownValue": [
+        {
+          "id": 1,
+          "value": "Russian"
+        },
+        {
+          "id": 2,
+          "value": "English"
+        },
+        {
+          "id": 3,
+          "value": "Ukrainian"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "settingName": "Font Style",
+      "settingValue": false,
+      "switcher": false,
+      "dropdownDefaultValue": "",
+      "dropdownValue": [
+        {
+          "id": 1,
+          "value": "Sans-Sarif"
+        },
+        {
+          "id": 2,
+          "value": "Time-New-Roman"
+        },
+        {
+          "id": 3,
+          "value": "Roboto"
+        }
+      ]
     }
   ]
 }

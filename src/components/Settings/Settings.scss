@@ -1,0 +1,29 @@
+.settings-container {
+  width: 50%;
+  height: 50vh;
+  margin-top: 10rem;
+  display: flex;
+  background-color: rgba(66, 65, 65, 0.5);
+}
+
+.settings-list {
+  width: 10rem;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.settings {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.setting-name {
+  padding: 0.5rem 1rem;
+  background-color: #4b4b4b;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  cursor: pointer;
+  a {
+    color: #fff;
+  }
+}

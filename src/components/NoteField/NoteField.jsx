@@ -37,7 +37,7 @@ const NoteField = ({
   };
 
   return (
-    <div className="main-frame">
+    <React.Fragment>
       <div className="top-bar">
         <textarea
           className="note-title-field"
@@ -48,22 +48,27 @@ const NoteField = ({
         />
         {(titleValue || bodyValue) && (
           <div className="note-unsaved-changes">
-            <p>Unsaved changes</p>
-            <AttentionIcon className="unsaved-changes-icon" width="23" />
+            <p>
+              Unsaved{" "}
+              <span className="note-unsaved-changes__word">changes</span>
+            </p>
+            <AttentionIcon
+              className="unsaved-changes-icon"
+              width="23"
+              height="23"
+            />
           </div>
         )}
-        <form name="note-title-form" action="/"></form>
       </div>
       <div className="note-menu">
         <div className="note-body-section">
-          <form name="note-body-form" action="/">
-            <textarea
-              className="note-body-field"
-              type="text"
-              value={bodyValue}
-              onChange={(e) => changeBodyValue(e.target.value)}
-            />
-          </form>
+          <textarea
+            className="note-body-field"
+            type="text"
+            value={bodyValue}
+            onChange={(e) => changeBodyValue(e.target.value)}
+          />
+
           {saveNotification && (
             <ShowNotification
               notificationName={"Note Saved"}
@@ -96,7 +101,7 @@ const NoteField = ({
           />
         )}
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

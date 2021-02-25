@@ -14,7 +14,7 @@ const Notes = ({
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <div className="notes-frame">
+    <React.Fragment>
       <textarea
         className="note-search-field"
         type="text"
@@ -33,7 +33,7 @@ const Notes = ({
         setNoteId={setNoteId}
         searchTerm={searchTerm}
       />
-    </div>
+    </React.Fragment>
   );
 };
 

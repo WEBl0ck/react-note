@@ -92,15 +92,17 @@ const NotesContainer = ({
   });
 
   return currentNotes ? (
-    <Container fluid className="notes-container">
-      <Row className="notes-list">{searchTerm ? filteredData : data}</Row>
-      {deleteNotification && (
-        <ShowNotification
-          notificationName={"Note Deleted"}
-          notificationColor={"rgba(224, 67, 83, 0.8)"}
-        />
-      )}
-    </Container>
+    <div className="notes-container">
+      <Container fluid>
+        <Row className="notes-list">{searchTerm ? filteredData : data}</Row>
+        {deleteNotification && (
+          <ShowNotification
+            notificationName={"Note Deleted"}
+            notificationColor={"rgba(224, 67, 83, 0.8)"}
+          />
+        )}
+      </Container>
+    </div>
   ) : (
     "Loading..."
   );

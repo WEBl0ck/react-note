@@ -64,18 +64,17 @@
   border: none;
   border-bottom: 1px solid #000;
   padding: 18px 10px;
-  width: inherit;
+  width: 100%;
   font-family: "Roboto Condensed", sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
-  color: #fff;
-  background-color: #333333;
   position: sticky;
 }
 
 .notes-container {
   height: 91vh;
   overflow-y: scroll;
+  width: 100%;
 }
 
 .notes-container::-webkit-scrollbar-track {
