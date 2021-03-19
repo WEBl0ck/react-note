@@ -11,17 +11,19 @@ const Settings = ({ toggleTheme }) => {
   return (
     <Router>
       <div className="settings-container">
-        <ul className="settings-list">
-          <li className="setting-name">
-            <Link to="/settings/general">General</Link>
-          </li>
-          <li className="setting-name">
-            <Link to="/settings/editor">Editor</Link>
-          </li>
-          <li className="setting-name">
-            <Link to="/settings/user-interface">UI</Link>
-          </li>
-        </ul>
+        <div className="settings-list">
+          <Link className="setting-name" to="/settings/general">
+            General
+          </Link>
+
+          <Link className="setting-name" to="/settings/editor">
+            Editor
+          </Link>
+
+          <Link className="setting-name" to="/settings/user-interface">
+            UI
+          </Link>
+        </div>
         <div className="settings">
           <Switch>
             <Route exact path="/settings/general">

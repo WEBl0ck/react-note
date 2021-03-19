@@ -53,6 +53,12 @@
       "body": "Async testing",
       "colorHex": "#42B883",
       "id": 14
+    },
+    {
+      "title": "Title testing ",
+      "body": "Body text",
+      "colorHex": "#FF6464",
+      "id": 15
     }
   ],
   "colors": [
@@ -100,8 +106,8 @@
   "selectedColor": [
     {
       "id": 1,
-      "hex": "#42B883",
-      "colorName": "green"
+      "hex": "#FF6464",
+      "colorName": "red"
     }
   ],
   "settings": [
@@ -131,7 +137,7 @@
       "settingName": "Language",
       "settingValue": false,
       "switcher": false,
-      "dropdownDefaultValue": "",
+      "dropdownDefaultValue": "Ukrainian",
       "dropdownValue": [
         {
           "id": 1,
@@ -152,7 +158,7 @@
       "settingName": "Font Style",
       "settingValue": false,
       "switcher": false,
-      "dropdownDefaultValue": "",
+      "dropdownDefaultValue": "Time-New-Roman",
       "dropdownValue": [
         {
           "id": 1,

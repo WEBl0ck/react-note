@@ -9,6 +9,8 @@
 .settings-list {
   width: 10rem;
   padding: 0.5rem 0.5rem 0 0.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .settings {
@@ -17,13 +19,15 @@
 }
 
 .setting-name {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 2rem;
   background-color: #4b4b4b;
   text-align: center;
   font-weight: 700;
   margin-bottom: 0.6rem;
   cursor: pointer;
-  a {
+  color: #fff;
+  &:hover {
     color: #fff;
+    background-color: #4b4b4ba6;
   }
 }
