@@ -1,5 +1,5 @@
 # react-note
-Веб-приложение для создания маленьких заметок созданное с помощью ReactJS.
+Web App for creating small notes.
 
 ![alt text](https://i.imgur.com/OUpGT2l.png)
 ![notes storage image](https://i.imgur.com/2tBqL2l.png)
