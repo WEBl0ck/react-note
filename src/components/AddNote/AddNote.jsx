@@ -30,7 +30,7 @@ const AddNote = ({ onAdd, titleValue, bodyValue, colorHex, colorName }) => {
       return;
     }
     axios
-      .post("http://localhost:3001/notes", {
+      .post("/notes", {
         title: titleValue,
         body: bodyValue,
         colorHex: colorHex,
@@ -42,7 +42,7 @@ const AddNote = ({ onAdd, titleValue, bodyValue, colorHex, colorName }) => {
       .catch(() => {
         alert("Ошибка при добавлении списка!");
       });
-    axios.patch("http://localhost:3001/selectedColor/1", {
+    axios.patch("/selectedColor/1", {
       hex: colorHex,
       colorName: colorName,
     });

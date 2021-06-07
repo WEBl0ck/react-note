@@ -21,14 +21,14 @@ const SettingsItem = ({
   const [defaultDropdown, setDefaultDropdown] = useState("");
 
   useDidUpdate(() => {
-    axios.patch("http://localhost:3001/settings/" + settingId, {
+    axios.patch("/settings/" + settingId, {
       settingValue: isChecked,
     });
     changeTheme(isChecked, settingId);
   }, [isChecked]);
 
   useDidUpdate(() => {
-    axios.patch("http://localhost:3001/settings/" + settingId, {
+    axios.patch("/settings/" + settingId, {
       dropdownDefaultValue: defaultDropdown,
     });
   }, [defaultDropdown]);

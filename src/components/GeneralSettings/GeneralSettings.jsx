@@ -9,7 +9,7 @@ const GeneralSettings = ({ toggleTheme }) => {
   const [settings, setSettings] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/settings/").then(({ data }) => {
+    axios.get("/settings/").then(({ data }) => {
       setSettings(data);
     });
   }, []);

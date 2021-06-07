@@ -92,7 +92,7 @@ function App() {
     }
 
     axios
-      .patch("http://localhost:3001/notes/" + noteId, {
+      .patch("/notes/" + noteId, {
         title: titleValue,
         body: bodyValue,
         colorHex: colorHex,
@@ -102,7 +102,7 @@ function App() {
         alert("Ошибка при добавлении списка!");
       });
 
-    axios.patch("http://localhost:3001/selectedColor/1", {
+    axios.patch("/selectedColor/1", {
       hex: colorHex,
       colorName: colorName,
     });

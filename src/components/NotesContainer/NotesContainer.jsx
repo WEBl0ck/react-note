@@ -39,7 +39,7 @@ const NotesContainer = ({
 
   const removeList = (item) => {
     if (window.confirm("Вы действительно хотите удалить заметку?")) {
-      axios.delete("http://localhost:3001/notes/" + item.id).then(() => {
+      axios.delete("/notes/" + item.id).then(() => {
         onRemove(item.id);
         showDeleteNotification();
       });
