@@ -1,5 +1,5 @@
 # react-note
-Web App for creating small notes.
+Web App for creating small notes. (Pet Project)
 
 ![alt text](https://i.imgur.com/OUpGT2l.png)
 ![notes storage image](https://i.imgur.com/2tBqL2l.png)
