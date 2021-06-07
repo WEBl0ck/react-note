@@ -45,20 +45,20 @@ function App() {
   const [theme, setTheme] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/notes").then(({ data }) => {
+    axios.get("/notes").then(({ data }) => {
       setNotes(data);
     });
 
-    axios.get("http://localhost:3001/colors").then(({ data }) => {
+    axios.get("/colors").then(({ data }) => {
       setColors(data);
     });
 
-    axios.get("http://localhost:3001/selectedColor/1").then(({ data }) => {
+    axios.get("/selectedColor/1").then(({ data }) => {
       setColorHex(data.hex);
       setColorName(data.colorName);
     });
 
-    axios.get("http://localhost:3001/settings/1").then(({ data }) => {
+    axios.get("/settings/1").then(({ data }) => {
       data.settingValue ? setTheme("light") : setTheme("dark");
     });
   }, []);
